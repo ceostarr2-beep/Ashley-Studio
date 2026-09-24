@@ -349,6 +349,8 @@ emailSubmit.textContent = "SENDING...";
   if (!d.name || !d.business || !d.type || !d.details) {
     formStatus.textContent =
       "Please complete your name, business name, project type and project details.";
+    emailSubmit.disabled = false;
+    emailSubmit.textContent = "SEND BY EMAIL →";
     return;
   }
 
@@ -359,10 +361,10 @@ emailSubmit.textContent = "SENDING...";
       method: "POST",
       body: new FormData(projectForm),
       headers: {
-        Accept: "application/
+        Accept: "application/json"
+                                 }
+    });
           if (response.ok) {
-          emailSubmit.disabled = false;
-emailSubmit.textContent = "SENT ✓";
   projectForm.reset();
 
   formStatus.innerHTML = `
@@ -377,16 +379,21 @@ emailSubmit.textContent = "SENT ✓";
   `;
 
   formStatus.classList.add("show");
+            emailSubmit.disabled = false;
+      emailSubmit.textContent = "SENT ✓";
+            
 } else {
       formStatus.textContent =
         "Something went wrong. Please try again or use WhatsApp.";
+            emailSubmit.disabled = false;
+      emailSubmit.textContent = "SEND BY EMAIL →";
     }
 
   } catch (error) {
-                             emailSubmit.disabled = false;
-emailSubmit.textContent = "SEND BY EMAIL →";
     formStatus.textContent =
       "Connection error. Please try again or use WhatsApp.";
+    emailSubmit.disabled = false;
+    emailSubmit.textContent = "SEND BY EMAIL →";
   }
 });
 whatsappSubmit.addEventListener("click",()=>{
