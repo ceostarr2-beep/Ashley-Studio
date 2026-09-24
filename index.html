@@ -163,10 +163,10 @@ footer{padding:45px 8% 25px;background:#050505;border-top:1px solid var(--line)}
 <div class="work-head reveal"><div><div class="section-kicker">Selected Work</div><h2 class="section-title">Built to be <span>seen.</span></h2></div><p>Luxury at its finest.</p></div>
 <div class="projects">
 <article class="project reveal-left"><div class="project-image"><img src="lenorapart.png" alt="Business website project"></div><div class="project-info"><div class="project-number">PROJECT / 01</div><h3>Lenora Apartment</h3><p>Premium business website concept.</p><a href="https://ceostarr2-beep.github.io/Omorr/" class="project-link" target="_blank">VIEW PROJECT DEMO →</a></div></article>
-<article class="project project-udss reveal-right"><div class="project-image"><img src="udss.png" alt="Luxury website project"></div><div class="project-info"><div class="project-number">PROJECT / 02</div><h3>U.D.S.S</h3><p>Hospitality website experience.</p><a href="https://ceostarr2-beep.github.io/UDSS/" class="project-link" target="_blank">VIEW PROJECT DEMO →</a></div></article>
+<article class="project project-udss reveal-right"><div class="project-image"><img src="udss.png" alt="Luxury website project"></div><div class="project-info"><div class="project-number">PROJECT / 02</div><h3>U.D.S.S</h3><p>School concept redesign.</p><a href="https://ceostarr2-beep.github.io/UDSS/" class="project-link" target="_blank">VIEW PROJECT DEMO →</a></div></article>
 <article class="project reveal-left"><div class="project-image"><img src="emmanuella.png" alt="Creative website project"></div><div class="project-info"><div class="project-number">PROJECT / 03</div><h3>Custom Portfolio</h3><p>Modern portfolio experience.</p><a href="https://ceostarr2-beep.github.io/EMMANUELLA-PORTFOLIO/" class="project-link" target="_blank">VIEW PROJECT →</a></div></article>
 </div>
-<div class="project-tip reveal"><strong>My</strong></strong> portfolio rule:</strong> Always go for the best and premium experiences at affordable prices.</div>
+<div class="project-tip reveal"><strong>Portfolio rule:</strong> Build useful, credible and premium websites at affordable prices.</div>
 </section>
 
 <section class="section process" id="process"><div class="reveal"><div class="section-kicker">The Process</div><h2 class="section-title">Simple process.<br><span>Serious results.</span></h2></div>
@@ -185,16 +185,61 @@ footer{padding:45px 8% 25px;background:#050505;border-top:1px solid var(--line)}
 </div></div>
 
 <div class="form-card reveal-right"><div class="form-top"><h3>Project Brief</h3><span>01 — CONSULTATION</span></div>
-<form id="projectForm"><div class="form-grid">
-<div class="field"><label>Your Name</label><input id="clientName" required placeholder="John Doe"></div>
-<div class="field"><label>Business Name</label><input id="businessName" required placeholder="Your business"></div>
-<div class="field"><label>Project Type</label><select id="projectType" required><option value="">Select one</option><option>Business Website</option><option>Portfolio Website</option><option>Hotel / Apartment Website</option><option>Restaurant Website</option><option>E-commerce Website</option><option>Website Redesign</option><option>Landing Page</option><option>Other</option></select></div>
-<div class="field"><label>Current Website</label><input id="currentWebsite" type="url" placeholder="https://example.com"></div>
-<div class="field full"><label>What would you like?</label><textarea id="projectDetails" required placeholder="Tell me what you want the website to do, what you want changed, pages, features, style, etc."></textarea></div>
-<div class="field full"><label>Reference Link / Inspiration</label><input id="referenceLink" type="url" placeholder="https://example.com"></div>
+<form id="projectForm" action="https://formspree.io/f/mjykrnrn" method="POST">
+
+<div class="form-grid">
+
+<div class="field">
+<label>Your Name</label>
+<input id="clientName" name="name" type="text" required placeholder="John Doe">
 </div>
-<div class="form-actions"><button class="btn btn-gold" type="submit">SEND BY EMAIL →</button><button class="btn btn-outline" type="button" id="whatsappSubmit">SEND ON WHATSAPP →</button></div>
-<p class="form-status" id="formStatus">Your information will be used only to respond to your project enquiry.</p>
+
+<div class="field">
+<label>Business Name</label>
+<input id="businessName" name="business" type="text" required placeholder="Your business">
+</div>
+
+<div class="field">
+<label>Project Type</label>
+<select id="projectType" name="project_type" required>
+<option value="">Select one</option>
+<option>Business Website</option>
+<option>Portfolio Website</option>
+<option>Hotel / Apartment Website</option>
+<option>Restaurant Website</option>
+<option>E-commerce Website</option>
+<option>Website Redesign</option>
+<option>Landing Page</option>
+<option>Other</option>
+</select>
+</div>
+
+<div class="field">
+<label>Current Website</label>
+<input id="currentWebsite" name="current_website" type="url" placeholder="https://example.com">
+</div>
+
+<div class="field full">
+<label>What would you like?</label>
+<textarea id="projectDetails" name="project_details" required placeholder="Tell me what you want the website to do, what you want changed, pages, features, style, etc."></textarea>
+</div>
+
+<div class="field full">
+<label>Reference Link / Inspiration</label>
+<input id="referenceLink" name="reference_link" type="url" placeholder="https://example.com">
+</div>
+
+</div>
+
+<div class="form-actions">
+<button class="btn btn-gold" type="submit">SEND BY EMAIL →</button>
+<button class="btn btn-outline" type="button" id="whatsappSubmit">SEND ON WHATSAPP →</button>
+</div>
+
+<p class="form-status" id="formStatus">
+Your information will be used only to respond to your project enquiry.
+</p>
+
 </form></div>
 </div></section>
 
@@ -225,34 +270,41 @@ gsap.to(".hero-bg",{yPercent:12,ease:"none",scrollTrigger:{trigger:".hero",start
 gsap.utils.toArray(".project").forEach(p=>gsap.fromTo(p.querySelector("img"),{scale:1.12},{scale:1,ease:"none",scrollTrigger:{trigger:p,start:"top bottom",end:"bottom top",scrub:1}}));
 
 function data(){return{name:clientName.value.trim(),business:businessName.value.trim(),type:projectType.value,website:currentWebsite.value.trim(),details:projectDetails.value.trim(),reference:referenceLink.value.trim()}}
-projectForm.addEventListener("submit",e=>{
- e.preventDefault();const d=data();
- const subject=encodeURIComponent("New Website Consultation — "+d.business);
- const body=encodeURIComponent(`Hello Ashley,
+projectForm.addEventListener("submit", async e => {
+  e.preventDefault();
 
-I would like to discuss a website project.
+  const d = data();
 
-NAME:
-${d.name}
+  if (!d.name || !d.business || !d.type || !d.details) {
+    formStatus.textContent =
+      "Please complete your name, business name, project type and project details.";
+    return;
+  }
 
-BUSINESS:
-${d.business}
+  formStatus.textContent = "Sending your consultation...";
 
-PROJECT TYPE:
-${d.type}
+  try {
+    const response = await fetch(projectForm.action, {
+      method: "POST",
+      body: new FormData(projectForm),
+      headers: {
+        Accept: "application/json"
+      }
+    });
 
-CURRENT WEBSITE:
-${d.website||"None"}
+    if (response.ok) {
+      formStatus.textContent =
+        "Consultation received. Thank you — I’ll review your project and get back to you.";
+      projectForm.reset();
+    } else {
+      formStatus.textContent =
+        "Something went wrong. Please try again or use WhatsApp.";
+    }
 
-WHAT I NEED:
-${d.details}
-
-REFERENCE / INSPIRATION:
-${d.reference||"None"}
-
-Thank you.`);
- location.href=`mailto:ceostarr2@gmail.com?subject=${subject}&body=${body}`;
- formStatus.textContent="Your email app should now open with the consultation prepared. Review it and tap Send.";
+  } catch (error) {
+    formStatus.textContent =
+      "Connection error. Please try again or use WhatsApp.";
+  }
 });
 whatsappSubmit.addEventListener("click",()=>{
  const d=data();
